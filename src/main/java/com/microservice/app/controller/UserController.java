@@ -1,6 +1,7 @@
 package com.microservice.app.controller;
 
 import com.microservice.app.model.User;
+import com.microservice.app.service.EmailAlreadyTakenException;
 import com.microservice.app.service.UserNotFoundException;
 import com.microservice.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
@@ -58,12 +58,25 @@ public class UserController {
     }
 
     /**
+     * Save a user
+     * @return
+     */
+
+    @PostMapping("/save-user/")
+    public EntityModel<User> saveUser(@RequestBody User user) throws EmailAlreadyTakenException {
+
+        User savedUser = userService.saveUser(user);
+
+        return EntityModel.of(savedUser,
+                linkTo(methodOn(UserController.class).saveUser(user)).withSelfRel());
+    }
+
+    /**
      * delete a given user
      */
     @DeleteMapping("/delete-user/{email}")
     public void deleteUserByEmailAddress(@PathVariable("email") String email) throws UserNotFoundException {
         userService.deleteUser(email);
-
     }
 
     /**

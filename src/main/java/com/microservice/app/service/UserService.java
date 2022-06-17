@@ -4,7 +4,6 @@ package com.microservice.app.service;
 import com.microservice.app.dao.UserRepository;
 import com.microservice.app.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,16 +27,16 @@ public class UserService {
      * Add a user to the system
      */
 
-    public User saveUser(User user, String email) throws EmailAlreadyTakenException {
+    public User saveUser(User user){
 
         //Check if the email address is already taken
-        Optional<User> testEmail = userRepository.findById(email);
+//        Optional<User> testEmail = userRepository.findById();
 
-        if (testEmail == null){
+//        if (testEmail == null){
             return userRepository.save(user);
-        }else {
-            throw new EmailAlreadyTakenException("Email address is already taken, use another one");
-        }
+//        }else {
+//            throw new EmailAlreadyTakenException("Email address is already taken, use another one");
+//        }
     }
 
     /**
@@ -50,6 +49,7 @@ public class UserService {
     /**
      * Find a user by email address
      * @return the user with the email address
+     * @param email
      */
 
     public Optional<User> getUserByEmailAddress(String email) throws UserNotFoundException {
