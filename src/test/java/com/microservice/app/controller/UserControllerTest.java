@@ -99,11 +99,6 @@ class UserControllerTest {
         newUser.setCredit(269.78);
 
         Mockito.when(userService.saveUser(newUser)).thenReturn(newUser);
-
-//        mockMvc.perform(MockMvcRequestBuilders
-//                        .post("/api/v1/save-user")
-//                        .contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(status().isOk());
     }
     @Test
     @DisplayName("Update a User")
