@@ -1,6 +1,7 @@
 package com.microservice.app.model;
 
 
+import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -20,6 +21,7 @@ import javax.persistence.Id;
 @Data
 public class User {
     @Id
+    @NotNull
     private String email;
 
     private String firstName;
