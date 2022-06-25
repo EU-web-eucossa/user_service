@@ -1,7 +1,7 @@
-package com.microservice.app.config;
+package com.microservice.app.publisher;
 
-import com.rabbitmq.client.ConnectionFactory;
 import org.springframework.amqp.core.*;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.context.annotation.Bean;
@@ -35,17 +35,28 @@ public class MessagingConfig {
 
     //message converter
     @Bean
-    public MessageConverter messageConverter(){
-        return (MessageConverter) new Jackson2JsonMessageConverter();
+    public Jackson2JsonMessageConverter messageConverter(){
+        return new Jackson2JsonMessageConverter();
     }
 
     /**
      * Add the RabbitMq template
      */
-    @Bean
+//    @Bean
+//    public AmqpTemplate amqpTemplate(ConnectionFactory connectionFactory){
+//        final RabbitTemplate rabbitTemplate = new RabbitTemplate((org.springframework.amqp.rabbit.connection.ConnectionFactory) connectionFactory);
+//        rabbitTemplate.setMessageConverter(messageConverter());
+//        return rabbitTemplate;
+//    }
+
     public AmqpTemplate template(ConnectionFactory connectionFactory){
-        final RabbitTemplate rabbitTemplate = new RabbitTemplate((org.springframework.amqp.rabbit.connection.ConnectionFactory) connectionFactory);
-        rabbitTemplate.setMessageConverter((org.springframework.amqp.support.converter.MessageConverter) messageConverter());
-        return rabbitTemplate;
+        RabbitTemplate template = new RabbitTemplate(connectionFactory);
+        template.setMessageConverter(messageConverter());
+
+        return template;
     }
+
+
+
+
 }

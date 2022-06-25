@@ -36,6 +36,8 @@ public class UserController {
         //Write a hypertext driven output using Spring HATEOAS for more RESTful services
         List<User> allusers =  userService.getAllSystemUsers();
 
+
+
         User user = new User();
         EntityModel.of(user, linkTo(methodOn(UserController.class).findUserById(user.getEmail())).withSelfRel(),
                 linkTo(methodOn(UserController.class).getAllUsers()).withRel("/api/v1/users"));

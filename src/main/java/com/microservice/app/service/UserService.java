@@ -94,9 +94,13 @@ public class UserService {
             //Create a new user instance
             User newUser = new User();
             newUser.setEmail(user.getEmail());
-            newUser.setFirstName(user.getFirstName());
-            newUser.setLastName(user.getLastName());
+            newUser.setUserName(user.getUserName());
             newUser.setCredit(user.getCredit());
+            newUser.setPhoneNumber(user.getPhoneNumber());
+            newUser.setZip(user.getZip());
+            newUser.setCity(user.getCity());
+            newUser.setCredit(user.getCredit());
+
             return userRepository.save(newUser);
         } else {throw new UserNotFoundException("User not available for update");}
     }

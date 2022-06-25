@@ -19,13 +19,22 @@ import javax.persistence.Id;
 @Getter
 @Setter
 @Data
+@ToString
 public class User {
     @Id
     @NotNull
     private String email;
+    @NotNull
+    private String userName;
 
-    private String firstName;
-    private String lastName;
+    @NotNull
     private Double credit;
+    @NotNull
+    private String city;
+    @NotNull
+    private String zip;
+    @NotNull
+    private String phoneNumber;
+
 
 }

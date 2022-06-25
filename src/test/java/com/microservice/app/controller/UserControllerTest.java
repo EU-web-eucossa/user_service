@@ -43,8 +43,8 @@ class UserControllerTest {
     /**
      * Create two user instances for testing purposes
      */
-    User user1 = new User("oduorfrancis134@gmail.com", "Xavier", "Oduor", 1247.50);
-    User user2 = new User("otienochris98@gmail.com", "Christopher", "Otieno", 500.95);
+    User user1 = new User("oduorfrancis134@gmail.com", "xavier", 1247.50, "Kisumu", "345", "+254778989909");
+    User user2 = new User("otienochris98@gmail.com", "chrisothis", 450.98, "Nairobi", "315", "+25471298909");
 
     @Test
     @DisplayName("All users should be displayed")
@@ -94,9 +94,11 @@ class UserControllerTest {
         User newUser = new User();
 
         newUser.setEmail("rivianstacia@gmail.com");
-        newUser.setFirstName("Rivian");
-        newUser.setLastName("Stacia");
+        newUser.setUserName("Rivian");
         newUser.setCredit(269.78);
+        newUser.setCity("Kisumu");
+        newUser.setZip("314");
+        newUser.setPhoneNumber("+254798065467");
 
         Mockito.when(userService.saveUser(newUser)).thenReturn(newUser);
     }
@@ -104,11 +106,11 @@ class UserControllerTest {
     @DisplayName("Update a User")
     void updateUser() throws UserNotFoundException, Exception {
         //create a user
-        User user3 = new User("ohtisochris98@gmail.com", "Christopher", "Otieno", 500.95);
+        User user3 = new User("ohtisochris98@gmail.com", "Christopher", 10890.00,"Mombasa", "216", "0714567895");
 
         Mockito.when(userService.getUserByEmailAddress(user3.getEmail())).thenReturn(Optional.of(user3));
 
-        user3.setLastName("Ericko");
+        user3.setUserName("Ericko");
 
         userService.saveUser(user3);
 

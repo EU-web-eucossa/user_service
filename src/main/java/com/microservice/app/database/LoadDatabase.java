@@ -34,8 +34,8 @@ public class LoadDatabase {
              * Clear the in-memory database and add two new users
              */
             userRepository.deleteAll();
-            log.info("Adding a user 1 to database" + "... " +  userRepository.save(new User("oduorfrancis134@gmail.com", "Xavier", "Oduor", 1247.50)));
-            log.info("Adding a user 2 to database" +  "..." + userRepository.save(new User("otienochris98@gmail.com", "Christopher", "Otieno", 500.95)));
+            log.info("Adding a user 1 to database" + "... " +  userRepository.save(new User("oduorfrancis134@gmail.com", "xavier", 1247.50, "Kisumu", "345", "+254778989909")));
+            log.info("Adding a user 2 to database" +  "..." + userRepository.save(new User("otienochris98@gmail.com", "chrisothis", 450.98, "Nairobi", "315", "+25471298909")));
         };
     }
 

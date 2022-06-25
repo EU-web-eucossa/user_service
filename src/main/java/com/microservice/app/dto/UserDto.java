@@ -8,7 +8,12 @@ public class UserDto {
     @Id
     @NotNull
     private String email;
-
-    private String lastName;
-    private Double credit;
+    @NotNull
+    private String userName;
+    @NotNull
+    private String city;
+    @NotNull
+    private Integer zip;
+    @NotNull
+    private String phoneNumber;
 }
