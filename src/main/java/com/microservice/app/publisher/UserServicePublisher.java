@@ -22,10 +22,13 @@ public class UserServicePublisher {
     @Autowired
     private RabbitTemplate template;
 
-    @Scheduled(fixedRate = 5000)
+//    @Scheduled(fixedRate = 10000)
     public String publishUserService() throws UserNotFoundException {
+        String user = "user object";
+
+        Optional<User> user1 = userService.getUserByEmailAddress("oduorfrancis134@gmail.com");
         System.out.println("sending user object...");
-        template.convertAndSend(MessagingConfig.EXCHANGE,MessagingConfig.ROUTING_KEY,));
+        template.convertAndSend(MessagingConfig.EXCHANGE,MessagingConfig.ROUTING_KEY,user1);
         return "send successful";
     }
 }

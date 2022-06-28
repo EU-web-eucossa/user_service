@@ -43,7 +43,7 @@ class UserControllerTest {
     /**
      * Create two user instances for testing purposes
      */
-    User user1 = new User("oduorfrancis134@gmail.com", "xavier", 1247.50, "Kisumu", "345", "+254778989909");
+    User user1 = new User("oduorfrancis134@gmail.com", "Xavier", 1247.50, "Kisumu", "345", "+254778989909");
     User user2 = new User("otienochris98@gmail.com", "chrisothis", 450.98, "Nairobi", "315", "+25471298909");
 
     @Test
@@ -69,10 +69,9 @@ class UserControllerTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", notNullValue()))
-                .andExpect(jsonPath("$.firstName").value("Xavier"));
+                .andExpect(jsonPath("$.userName").value("Xavier"));
 
     }
-
     @Test
     @DisplayName("User with the given email address should be deleted")
     void deleteUserByEmailAddress_success() throws UserNotFoundException, Exception {

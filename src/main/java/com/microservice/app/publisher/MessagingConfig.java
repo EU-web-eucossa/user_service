@@ -18,19 +18,19 @@ public class MessagingConfig {
     //create queue
     @Bean
     public Queue queue(){
-        return new Queue(QUEUE);
+        return new Queue(QUEUE.toUpperCase());
     }
 
     //create n exchange
     @Bean
     public TopicExchange exchange(){
-        return new TopicExchange(EXCHANGE);
+        return new TopicExchange(EXCHANGE.toUpperCase());
     }
 
     //bind queue and exchange
     @Bean
     public Binding binding(Queue queue, TopicExchange topicExchange){
-        return BindingBuilder.bind(queue).to(exchange()).with(ROUTING_KEY);
+        return BindingBuilder.bind(queue).to(exchange()).with(ROUTING_KEY.toUpperCase());
     }
 
     //message converter
@@ -38,21 +38,12 @@ public class MessagingConfig {
     public Jackson2JsonMessageConverter messageConverter(){
         return new Jackson2JsonMessageConverter();
     }
-
     /**
      * Add the RabbitMq template
      */
-//    @Bean
-//    public AmqpTemplate amqpTemplate(ConnectionFactory connectionFactory){
-//        final RabbitTemplate rabbitTemplate = new RabbitTemplate((org.springframework.amqp.rabbit.connection.ConnectionFactory) connectionFactory);
-//        rabbitTemplate.setMessageConverter(messageConverter());
-//        return rabbitTemplate;
-//    }
-
     public AmqpTemplate template(ConnectionFactory connectionFactory){
         RabbitTemplate template = new RabbitTemplate(connectionFactory);
         template.setMessageConverter(messageConverter());
-
         return template;
     }
 
